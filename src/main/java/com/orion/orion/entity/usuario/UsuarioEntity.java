@@ -16,6 +16,10 @@ public class UsuarioEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_usuario;
+    private String login ;
+    private String descricao; 
+    private String senha; 
+    private String status;
 
     public UsuarioEntity(Integer id_usuario, String login, String descricao, String senha, String status) {
         this.id_usuario = id_usuario;
@@ -62,10 +66,7 @@ public class UsuarioEntity implements Serializable {
         return true;
     }
 
-    private String login ;
-    private String descricao; 
-    private String senha; 
-    private String status;
+ 
 
     public Integer getId_usuario() {
         return id_usuario;
