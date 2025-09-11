@@ -23,6 +23,25 @@ public class UsuarioDTO {
 
     private String status ;
 
+
+    public UsuarioDTO(){}
+
+    //Resolve o problema da do controller .map(UsuarioDTO:new) utilizado em Optional
+    public UsuarioDTO(UsuarioEntity entity){
+        this.id_usuario = entity.getId_usuario();
+        this.login = entity.getLogin();
+        this.descricao = entity.getDescricao();
+        this.senha = entity.getSenha();
+        this.status = entity.getStatus();
+    }
+
+    public UsuarioDTO(Integer id_usuario, String login, String descricao, String senha, String status) {
+        this.id_usuario = id_usuario;
+        this.login = login;
+        this.descricao = descricao;
+        this.senha = senha;
+        this.status = status;
+    }
     
     @Override
     public int hashCode() {
@@ -73,13 +92,6 @@ public class UsuarioDTO {
         return true;
     }
 
-    public UsuarioDTO(Integer id_usuario, String login, String descricao, String senha, String status) {
-        this.id_usuario = id_usuario;
-        this.login = login;
-        this.descricao = descricao;
-        this.senha = senha;
-        this.status = status;
-    }
 
     public Integer getId_usuario() {
         return id_usuario;
@@ -119,11 +131,6 @@ public class UsuarioDTO {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-    
-
-    public static Optional<UsuarioDTO> converter(Optional<UsuarioEntity> usuario) {
-        return usuario.stream().map(UsuarioDTO::new).collect(Collectors.toList());
     }
     
 }
